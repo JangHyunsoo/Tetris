@@ -7,4 +7,6 @@
 
 using namespace std;
 
-#include "mecro.h"
+#include "resource.h"
+#include "Mecro.h"
+#include "Type.h"
