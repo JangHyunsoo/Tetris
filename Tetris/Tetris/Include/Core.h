@@ -15,6 +15,8 @@ public:
 	bool Init(HINSTANCE hInst);
 	int Run();
 private:
+	void Logic();
+private:
 	ATOM MyRegisterClass();
 	BOOL Create();
 public:

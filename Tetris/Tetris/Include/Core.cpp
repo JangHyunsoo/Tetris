@@ -1,5 +1,6 @@
 #include "Core.h"
 #include "SceneManager.h"
+#include "Timer.h"
 
 DEFINITION_SINGLE(CCore)
 bool CCore::m_bLoop = true;
@@ -10,6 +11,7 @@ CCore::CCore()
 
 CCore::~CCore()
 {
+	DESTROY_SINGE(CTimer)
 	DESTROY_SINGE(CSceneManager)
 	DESTROY_SINGE(CCore)
 }
@@ -25,9 +27,11 @@ bool CCore::Init(HINSTANCE hInst)
 
 	Create();
 
-	if (!GET_SINGE(CSceneManager)->Init()) {
+	if (!GET_SINGE(CTimer)->Init())
 		return false;
-	}
+
+	if (!GET_SINGE(CSceneManager)->Init())
+		return false;
 
 	return true;
 }
@@ -65,13 +69,20 @@ int CCore::Run()
 			DispatchMessage(&msg);
 		}
 		else {
-			// Logic();
+			Logic();
 		}
 	}
 
 	// ReleaseDC(m_hWnd, m_hDc);
 
 	return (int) msg.wParam;
+}
+
+void CCore::Logic()
+{
+	GET_SINGE(CTimer)->Update();
+
+	float fDeltaTime = GET_SINGE(CTimer)->GetDeltaTime();
 }
 
 LRESULT CCore::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -110,4 +121,3 @@ ATOM CCore::MyRegisterClass() {
 
 	return RegisterClassExW(&wcex);
 }
-
