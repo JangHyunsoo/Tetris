@@ -23,8 +23,8 @@ typedef struct _tagPosition {
 	}
 
 	_tagPosition(const POINT& pt) {
-		x = pt.x;
-		y = pt.y;
+		x = (float)pt.x;
+		y = (float)pt.y;
 	}
 
 	void operator = (const _tagPosition& pos) {
@@ -33,8 +33,8 @@ typedef struct _tagPosition {
 	}
 
 	void operator = (const POINT& pt) {
-		x = pt.x;
-		y = pt.y;
+		x = (float)pt.x;
+		y = (float)pt.y;
 	}
 
 	void operator = (float f[2]) {
