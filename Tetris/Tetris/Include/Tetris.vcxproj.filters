@@ -25,6 +25,9 @@
     <Filter Include="02.Scene\01.Layer">
       <UniqueIdentifier>{e48c76e9-52ec-474c-9ee2-196a75b367ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Object">
+      <UniqueIdentifier>{cb20b734-61e4-4e1e-8901-19f58c49c67a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -47,6 +50,9 @@
     </ClCompile>
     <ClCompile Include="Layer.cpp">
       <Filter>02.Scene\01.Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="CObj.cpp">
+      <Filter>03.Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="Layer.h">
       <Filter>02.Scene\01.Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>03.Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

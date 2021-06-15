@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CObj.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="InGameScene.cpp" />
     <ClCompile Include="Layer.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="InGameScene.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Mecro.h" />
+    <ClInclude Include="Obj.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
