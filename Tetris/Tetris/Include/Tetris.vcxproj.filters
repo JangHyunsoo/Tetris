@@ -54,6 +54,9 @@
     <ClCompile Include="CObj.cpp">
       <Filter>03.Object</Filter>
     </ClCompile>
+    <ClCompile Include="Obj.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -91,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="Obj.h">
       <Filter>03.Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Function.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

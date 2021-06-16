@@ -1,5 +1,6 @@
 #pragma once
 #include "Game.h"
+#include "Obj.h"
 
 class CLayer
 {
@@ -13,6 +14,8 @@ private:
 	class CScene* m_pScene; // contain Scene
 	string m_strTag;
 	int m_iZOrder;
+	list<class CObj*> m_ObjList;
+
 public:
 	void SetTag(const string& strTag) {
 		m_strTag = strTag;
@@ -37,5 +40,13 @@ public:
 	class CScene* GetScene() const {
 		return m_pScene;
 	}
+
+public:
+	void Input(float fDeltaTime);
+	int Update(float fDeltaTime);
+	int LateUpdate(float fDeltaTime);
+	void Collision(float fDeltaTime);
+	void Render(HDC hDC, float fDeltaTime);
+
 };
 

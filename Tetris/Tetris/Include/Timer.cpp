@@ -16,6 +16,7 @@ bool CTimer::Init()
 	QueryPerformanceCounter(&m_tTime);
 
 	m_fDeltaTime = 0.0f;
+	m_fTimeScale = 1.0f;
 	m_fFPS = 0.0f;
 	m_fFPSTime = 0.0f;
 	m_iFrameMax = 60;

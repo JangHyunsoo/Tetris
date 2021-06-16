@@ -15,3 +15,25 @@ bool CInGameScene::Init()
 
 	return true;
 }
+
+void CInGameScene::Input(float fDeltaTime)
+{
+}
+
+int CInGameScene::Update(float fDeltaTime)
+{
+	return 0;
+}
+
+int CInGameScene::LateUpdate(float fDeltaTime)
+{
+	return 0;
+}
+
+void CInGameScene::Collision(float fDeltaTime)
+{
+}
+
+void CInGameScene::Render(HDC hDC, float fDeltaTime)
+{
+}

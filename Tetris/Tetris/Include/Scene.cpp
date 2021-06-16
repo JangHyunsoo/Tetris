@@ -35,6 +35,53 @@ bool CScene::Init()
 	return true;
 }
 
+void CScene::Input(float fDeltaTime)
+{
+	auto iterEnd = m_LayerList.end();
+
+	for (auto iter = m_LayerList.begin(); iter != iterEnd; ++iter) {
+		(*iter)->Input(fDeltaTime);
+	}
+}
+
+int CScene::Update(float fDeltaTime)
+{
+	auto iterEnd = m_LayerList.end();
+
+	for (auto iter = m_LayerList.begin(); iter != iterEnd; ++iter) {
+		(*iter)->Update(fDeltaTime);
+	}
+	return 0;
+}
+
+int CScene::LateUpdate(float fDeltaTime)
+{
+	auto iterEnd = m_LayerList.end();
+
+	for (auto iter = m_LayerList.begin(); iter != iterEnd; ++iter) {
+		(*iter)->LateUpdate(fDeltaTime);
+	}
+	return 0;
+}
+
+void CScene::Collision(float fDeltaTime)
+{
+	auto iterEnd = m_LayerList.end();
+
+	for (auto iter = m_LayerList.begin(); iter != iterEnd; ++iter) {
+		(*iter)->Collision(fDeltaTime);
+	}
+}
+
+void CScene::Render(HDC hDC, float fDeltaTime)
+{
+	auto iterEnd = m_LayerList.end();
+
+	for (auto iter = m_LayerList.begin(); iter != iterEnd; ++iter) {
+		(*iter)->Render(hDC, fDeltaTime);
+	}
+}
+
 bool CScene::LayerSort(CLayer* A, CLayer* B)
 {
 	return A->GetZOrder() < B->GetZOrder();

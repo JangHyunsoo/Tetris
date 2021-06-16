@@ -19,13 +19,15 @@ CCore::~CCore()
 bool CCore::Init(HINSTANCE hInst)
 {
 	this->m_hInst = hInst;
-	  
+
 	MyRegisterClass();
 
 	m_tRS.iW = 1280;
 	m_tRS.iH = 720;
 
 	Create();
+
+	m_hDC = GetDC(m_hWnd);
 
 	if (!GET_SINGE(CTimer)->Init())
 		return false;
@@ -45,6 +47,7 @@ BOOL CCore::Create()
 	}
 
 	RECT rc = { 0, 0, m_tRS.iW, m_tRS.iH };
+
 
 	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
 
@@ -75,7 +78,7 @@ int CCore::Run()
 
 	// ReleaseDC(m_hWnd, m_hDc);
 
-	return (int) msg.wParam;
+	return (int)msg.wParam;
 }
 
 void CCore::Logic()
@@ -83,6 +86,40 @@ void CCore::Logic()
 	GET_SINGE(CTimer)->Update();
 
 	float fDeltaTime = GET_SINGE(CTimer)->GetDeltaTime();
+
+	Input(fDeltaTime);
+	Update(fDeltaTime);
+	LateUpdate(fDeltaTime);
+	Collision(fDeltaTime);
+	Render(fDeltaTime);
+
+}
+
+void CCore::Input(float fDeltaTime)
+{
+	GET_SINGE(CSceneManager)->Input(fDeltaTime);
+}
+
+int CCore::Update(float fDeltaTime)
+{
+	GET_SINGE(CSceneManager)->Update(fDeltaTime);
+	return 0;
+}
+
+int CCore::LateUpdate(float fDeltaTime)
+{
+	GET_SINGE(CSceneManager)->LateUpdate(fDeltaTime);
+	return 0;
+}
+
+void CCore::Collision(float fDeltaTime)
+{
+	GET_SINGE(CSceneManager)->Collision(fDeltaTime);
+}
+
+void CCore::Render(float fDeltaTime)
+{
+	GET_SINGE(CSceneManager)->Render(m_hDC,fDeltaTime);
 }
 
 LRESULT CCore::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

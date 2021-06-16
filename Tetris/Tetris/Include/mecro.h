@@ -2,13 +2,14 @@
 
 #define SAFE_DELETE(p) if(p) { delete p; p = NULL; }
 #define SAFE_DELETE_ARRAY(p) if(p) { delete[] p; p = NULL; }
+#define SAFE_RELEASE(p) if(p) {p->Release(); p = NULL; }
 
 #define DECLARE_SINGLE(Type)	\
 private:\
 	static Type* m_pInst;\
 public:\
 	static Type* GetInst() {\
-		if (m_pInst == nullptr)\
+		if (m_pInst == NULL)\
 			m_pInst = new Type;\
 		return m_pInst;\
 	}\

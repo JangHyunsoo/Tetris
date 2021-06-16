@@ -15,6 +15,12 @@ public:
 	class CLayer* CreateLayer(const string& strTag, int iZOrber);
 public:
 	virtual bool Init();
+	virtual void Input(float fDeltaTime);
+	virtual int Update(float fDeltaTime);
+	virtual int LateUpdate(float fDeltaTime);
+	virtual void Collision(float fDeltaTime);
+	virtual void Render(HDC hDC, float fDeltaTime);
+
 public:
 	static bool LayerSort(class CLayer* A, class CLayer* B);
 };
