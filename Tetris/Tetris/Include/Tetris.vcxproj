@@ -143,14 +143,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CObj.cpp" />
+    <ClCompile Include="MoveObj.cpp" />
+    <ClCompile Include="Obj.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="InGameScene.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Obj.cpp" />
+    <ClCompile Include="Ref.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="StaticObj.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -161,10 +163,13 @@
     <ClInclude Include="InGameScene.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Mecro.h" />
+    <ClInclude Include="MoveObj.h" />
     <ClInclude Include="Obj.h" />
+    <ClInclude Include="Ref.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="StaticObj.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Type.h" />
   </ItemGroup>

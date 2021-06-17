@@ -1,31 +1,13 @@
 #pragma once
 
-#include "Game.h"
+#include "Ref.h"
 
-class CObj
+class CObj : 
+	public CRef
 {
 protected:
 	CObj();
 	virtual ~CObj();
-protected:
-	// shared ptr
-	int m_iRef;
-
-public:
-	void AddRef() {
-		++m_iRef;
-	}
-
-	int Release() {
-		--m_iRef;
-
-		if (m_iRef == 0) {
-			delete this;
-			return 0;
-		}
-
-		return m_iRef;
-	}
 
 protected:
 	string m_strTag;

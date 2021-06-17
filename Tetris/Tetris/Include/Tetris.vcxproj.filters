@@ -51,11 +51,17 @@
     <ClCompile Include="Layer.cpp">
       <Filter>02.Scene\01.Layer</Filter>
     </ClCompile>
-    <ClCompile Include="CObj.cpp">
+    <ClCompile Include="Obj.cpp">
       <Filter>03.Object</Filter>
     </ClCompile>
-    <ClCompile Include="Obj.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Ref.cpp">
+      <Filter>03.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveObj.cpp">
+      <Filter>03.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticObj.cpp">
+      <Filter>03.Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +103,15 @@
     </ClInclude>
     <ClInclude Include="Function.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Ref.h">
+      <Filter>03.Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveObj.h">
+      <Filter>03.Object</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticObj.h">
+      <Filter>03.Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
