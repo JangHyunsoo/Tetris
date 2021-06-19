@@ -5,13 +5,13 @@ CObj::CObj()
 
 }
 
-CObj::~CObj() {
-
+CObj::CObj(const CObj& obj)
+{
+	*this = obj;
 }
 
-bool CObj::Init()
-{
-	return false;
+CObj::~CObj() {
+
 }
 
 void CObj::Input(float fDeltaTime)

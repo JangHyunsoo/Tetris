@@ -1,4 +1,5 @@
 #include "InGameScene.h"
+#include "CursorBlock.h"
 
 CInGameScene::CInGameScene()
 {

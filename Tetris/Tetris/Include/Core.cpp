@@ -46,7 +46,7 @@ BOOL CCore::Create()
 		return FALSE;
 	}
 
-	RECT rc = { 0, 0, m_tRS.iW, m_tRS.iH };
+	RECT rc = { 0, 0, (LONG)m_tRS.iW, (LONG)m_tRS.iH };
 
 
 	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);

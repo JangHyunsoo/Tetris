@@ -1,14 +1,14 @@
 #pragma once
-#include "Obj.h"
-class CStaticObj :
-    public CObj
+#include "MoveObj.h"
+class CCursorBlock :
+    public CMoveObj
 {
-protected:
-	CStaticObj();
-	CStaticObj(const CStaticObj& obj);
-	~CStaticObj();
+private:
+	CCursorBlock();
+	CCursorBlock(const CCursorBlock& obj);
+    ~CCursorBlock();
 public:
-	virtual bool Init() = 0;
+	virtual bool Init();
 	virtual void Input(float fDeltaTime);
 	virtual int Update(float fDeltaTime);
 	virtual int LateUpdate(float fDeltaTime);

@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CursorBlock.cpp" />
     <ClCompile Include="MoveObj.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="Core.cpp" />
@@ -156,6 +157,7 @@
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CursorBlock.h" />
     <ClInclude Include="Flag.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="Game.h" />
