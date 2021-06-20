@@ -5,7 +5,7 @@ CStaticObj::CStaticObj()
 }
 
 CStaticObj::CStaticObj(const CStaticObj& obj) :
-	CStaticObj(obj)
+	CObj(obj)
 {
 }
 

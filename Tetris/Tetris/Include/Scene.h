@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game.h"
+#include "Layer.h"
 
 class CScene
 {
@@ -13,6 +14,8 @@ protected:
 	list<class CLayer*> m_LayerList;
 public:
 	class CLayer* CreateLayer(const string& strTag, int iZOrber);
+	class CLayer* FindLayer(const string& strTag);
+
 public:
 	virtual bool Init();
 	virtual void Input(float fDeltaTime);

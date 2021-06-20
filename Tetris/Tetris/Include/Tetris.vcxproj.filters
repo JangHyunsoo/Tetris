@@ -37,6 +37,9 @@
     <Filter Include="03.Object\01.MoveObj\01.CursorBlock">
       <UniqueIdentifier>{d9b308e5-0bba-48d7-a939-918e192582dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Core\02. Input">
+      <UniqueIdentifier>{bb6005a4-1515-4d61-81a1-a92b13f4d241}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

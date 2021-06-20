@@ -1,14 +1,52 @@
 #pragma once
 
 #include "Ref.h"
+#include "Layer.h"
+#include "Scene.h"
 
 class CObj : 
 	public CRef
 {
+public:
+	friend class CLayer;
+
 protected:
 	CObj();
 	CObj(const CObj& obj);
 	virtual ~CObj();
+
+private:
+	static list<CObj*> m_ObjList;
+	static unordered_map<string, CObj*> m_mapPrototype;
+
+public:
+	static void AddObj(CObj* pObj); 
+	static CObj* FindObject(const string& strTag);
+	static void EraseObj(CObj* pObj);
+	static void EraseObj(const string& strTag);
+	static void EraseObj();
+	static void ErasePrototype(const string& strTag);
+	static void ErasePrototype();
+
+protected:
+	class CScene* m_pScene;
+	class CLayer* m_pLayer;
+
+public:
+	void SetScene(class CScene* pScene) {
+		m_pScene = pScene;
+	}
+	void SetLayer(class CLayer* pLayer) {
+		m_pLayer = pLayer;
+	}
+
+	class CScene* GetScene() const {
+		return m_pScene;
+	}
+
+	class CLayer* GetLayer() const {
+		return m_pLayer;
+	}
 
 protected:
 	string m_strTag;
@@ -64,10 +102,6 @@ public:
 		m_tSize = tSize;
 	}
 
-	void SetTag(const string& strTag) {
-		m_strTag = strTag;
-	}
-
 	void SetPivot(const POSITION& tPivot) {
 		m_tPivot = tPivot;
 	}
@@ -88,5 +122,33 @@ public:
 	virtual int LateUpdate(float fDeltaTime);
 	virtual void Collision(float fDeltaTime);
 	virtual void Render(HDC hDC, float fDeltaTime);
-};
+	virtual CObj* Clone() = 0;
 
+public:
+	static CObj* CreateObj(CObj* pObj, const string& strTag, class CLayer* pLayer);
+
+	template<typename T>
+	static T* CreatePrototype(const string& strTag) {
+		T* pObj = new T;
+
+		pObj->SetTag(strTag);
+
+		if (!pObj->Init()) {
+			SAFE_RELEASE(pObj);
+			return NULL;
+		}
+
+		pObj->AddRef();
+		m_mapPrototype.insert(make_pair(strTag, pObj));
+
+
+		return pObj;
+	}
+
+	static CObj* CreateCloneObj(const string& strPrototypeKey, const string& strTag, class CLayer* pLayer = NULL);
+
+
+private:
+	static CObj* FindPrototype(const string& strKey);
+
+};

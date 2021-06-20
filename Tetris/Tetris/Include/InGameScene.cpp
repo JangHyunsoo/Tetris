@@ -14,27 +14,13 @@ bool CInGameScene::Init()
 	if (!CScene::Init())
 		return false;
 
+	CLayer* pLayer = FindLayer("Default");
+
+	CObj::CreatePrototype<CCursorBlock>("CursorBlock");
+
+	CObj* pBlock = CObj::CreateCloneObj("CursorBlock", "block1", pLayer);
+
+	SAFE_RELEASE(pBlock);
+
 	return true;
-}
-
-void CInGameScene::Input(float fDeltaTime)
-{
-}
-
-int CInGameScene::Update(float fDeltaTime)
-{
-	return 0;
-}
-
-int CInGameScene::LateUpdate(float fDeltaTime)
-{
-	return 0;
-}
-
-void CInGameScene::Collision(float fDeltaTime)
-{
-}
-
-void CInGameScene::Render(HDC hDC, float fDeltaTime)
-{
 }

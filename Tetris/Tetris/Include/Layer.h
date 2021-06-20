@@ -11,9 +11,13 @@ public:
 	CLayer();
 	~CLayer();
 private:
-	class CScene* m_pScene; // contain Scene
+	class CScene* m_pScene;
 	string m_strTag;
 	int m_iZOrder;
+	bool m_bEnable;
+	bool m_bLife;
+
+public:
 	list<class CObj*> m_ObjList;
 
 public:
@@ -40,6 +44,25 @@ public:
 	class CScene* GetScene() const {
 		return m_pScene;
 	}
+
+	void SetEnable(bool bEnable) {
+		m_bEnable = bEnable;
+	}
+
+	void Die() {
+		m_bLife = false;
+	}
+
+	bool GetEnable() const {
+		return m_bEnable;
+	}
+
+	bool GetLife() const {
+		return m_bLife;
+	}
+
+public:
+	void AddObject(class CObj* pObj);
 
 public:
 	void Input(float fDeltaTime);
