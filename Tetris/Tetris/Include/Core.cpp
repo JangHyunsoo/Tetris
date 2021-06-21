@@ -1,6 +1,7 @@
 #include "Core.h"
 #include "SceneManager.h"
 #include "Timer.h"
+#include "Obj.h"
 
 DEFINITION_SINGLE(CCore)
 bool CCore::m_bLoop = true;
@@ -16,6 +17,7 @@ CCore::~CCore()
 	DESTROY_SINGE(CTimer)
 	DESTROY_SINGE(CSceneManager)
 	DESTROY_SINGE(CCore)
+	CObj::ErasePrototype();
 }
 
 bool CCore::Init(HINSTANCE hInst)
