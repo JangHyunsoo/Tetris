@@ -4,7 +4,9 @@
 #include <list>
 #include <vector>
 #include <unordered_map>
+#include <cstring>
 #include <crtdbg.h>
+#include <typeinfo>
 
 using namespace std;
 

@@ -37,8 +37,8 @@
     <Filter Include="03.Object\01.MoveObj\01.CursorBlock">
       <UniqueIdentifier>{d9b308e5-0bba-48d7-a939-918e192582dd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Core\02. Input">
-      <UniqueIdentifier>{bb6005a4-1515-4d61-81a1-a92b13f4d241}</UniqueIdentifier>
+    <Filter Include="01.Core\02.Input">
+      <UniqueIdentifier>{e2632841-aae5-4d7c-8079-9b1d0a246194}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +77,9 @@
     </ClCompile>
     <ClCompile Include="CursorBlock.cpp">
       <Filter>03.Object\01.MoveObj\01.CursorBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>01.Core\02.Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="CursorBlock.h">
       <Filter>03.Object\01.MoveObj\01.CursorBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>01.Core\02.Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
