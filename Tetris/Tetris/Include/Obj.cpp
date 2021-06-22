@@ -2,7 +2,7 @@
 #include "Layer.h"
 
 list<CObj*> CObj::m_ObjList;
-unordered_map<string, CObj* > CObj::m_mapPrototype;
+unordered_map<string, CObj*> CObj::m_mapPrototype;
 
 CObj::CObj()
 {
@@ -11,6 +11,7 @@ CObj::CObj()
 CObj::CObj(const CObj& obj)
 {
 	*this = obj;
+	m_iRef = 1;
 }
 
 CObj::~CObj() {

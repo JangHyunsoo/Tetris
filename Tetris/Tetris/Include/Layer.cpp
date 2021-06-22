@@ -13,7 +13,7 @@ CLayer::~CLayer()
 {
 	auto iterEnd = m_ObjList.end();
 
-	for (auto iter = m_ObjList.begin(); iter != iterEnd;) {
+	for (auto iter = m_ObjList.begin(); iter != iterEnd; ++iter) {
 		CObj::EraseObj(*iter);
 		SAFE_RELEASE((*iter));
 	}

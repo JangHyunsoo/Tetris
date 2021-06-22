@@ -8,7 +8,7 @@ bool CCore::m_bLoop = true;
 
 CCore::CCore()
 {
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	//_CrtSetBreakAlloc(214);
 }
 
@@ -17,7 +17,6 @@ CCore::~CCore()
 	DESTROY_SINGE(CTimer)
 	DESTROY_SINGE(CSceneManager)
 	DESTROY_SINGE(CCore)
-	CObj::ErasePrototype();
 }
 
 bool CCore::Init(HINSTANCE hInst)
@@ -75,7 +74,10 @@ int CCore::Run()
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		Logic();
+		else
+		{
+			Logic();
+		}
 	}
 
 	// ReleaseDC(m_hWnd, m_hDc);
@@ -128,11 +130,10 @@ LRESULT CCore::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
-	case WM_DESTROY: {
+	case WM_DESTROY: 
 		m_bLoop = false;
 		PostQuitMessage(0);
 		break;
-	}
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}

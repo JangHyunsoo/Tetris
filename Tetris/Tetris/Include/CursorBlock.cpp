@@ -7,7 +7,6 @@ CCursorBlock::CCursorBlock()
 CCursorBlock::CCursorBlock(const CCursorBlock& obj) :
 	CMoveObj(obj)
 {
-
 }
 
 CCursorBlock::~CCursorBlock()

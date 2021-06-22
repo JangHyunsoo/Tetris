@@ -26,7 +26,6 @@ CLayer* CScene::CreateLayer(const string& strTag, int iZOrder)
 		m_LayerList.sort(CScene::LayerSort);
 	}
 
-
 	return pLayer;
 }
 
