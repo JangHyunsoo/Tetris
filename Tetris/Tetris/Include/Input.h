@@ -22,10 +22,24 @@ private:
 public:
 	bool Init(HWND hWnd);
 	void Update(float fDeltaTime);
+	bool KeyDown(const string& strKey) const;
+	bool KeyPress(const string& strKey) const;
+	bool KeyUp(const string& strKey) const;
 
 public:
 	template <typename T>
 	bool AddKey(const T& data) {
+		const char* pType = typeid(T).name();
+
+		if (strcmp(pType, "char") == 0 ||
+			strcmp(pType, "int") == 0) {
+			m_pCreateKey->vecKey.push_back((DWORD)data);
+		}
+		else {
+			m_pCreateKey->strName = data;
+			m_mapKey.insert(make_pair(m_pCreateKey->strName, m_pCreateKey));
+		}
+
 		return true;
 	}
 
@@ -53,6 +67,8 @@ public:
 
 		return true;
 	}
+private:
+	PKEYINFO FindKey(const string& strKey) const;
 
 	DECLARE_SINGLE(CInput)
 };
