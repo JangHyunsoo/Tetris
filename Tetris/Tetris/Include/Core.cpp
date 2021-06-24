@@ -1,6 +1,7 @@
 #include "Core.h"
 #include "SceneManager.h"
 #include "Timer.h"
+#include "Input.h"
 #include "Obj.h"
 
 DEFINITION_SINGLE(CCore)
@@ -15,6 +16,7 @@ CCore::CCore()
 CCore::~CCore()
 {
 	DESTROY_SINGE(CTimer)
+	DESTROY_SINGE(CInput)
 	DESTROY_SINGE(CSceneManager)
 	DESTROY_SINGE(CCore)
 }
@@ -33,6 +35,9 @@ bool CCore::Init(HINSTANCE hInst)
 	m_hDC = GetDC(m_hWnd);
 
 	if (!GET_SINGE(CTimer)->Init())
+		return false;
+
+	if (!GET_SINGE(CInput)->Init(m_hWnd))
 		return false;
 
 	if (!GET_SINGE(CSceneManager)->Init())
@@ -101,6 +106,7 @@ void CCore::Logic()
 
 void CCore::Input(float fDeltaTime)
 {
+	GET_SINGE(CInput)->Update(fDeltaTime);
 	GET_SINGE(CSceneManager)->Input(fDeltaTime);
 }
 
