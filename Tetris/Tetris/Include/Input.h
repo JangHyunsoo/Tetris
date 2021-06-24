@@ -17,7 +17,7 @@ class CInput{
 private:
 	HWND m_hWnd;
 	unordered_map<string, PKEYINFO> m_mapKey;
-	PKEYINFO* m_pCreateKey;
+	PKEYINFO m_pCreateKey;
 
 public:
 	bool Init(HWND hWnd);
@@ -32,18 +32,18 @@ public:
 	template <typename T, typename... Types>
 	bool AddKey(const T& data,const Types& ... args) {
 		if (!m_pCreateKey) {
-			m_pCreateKey = new PKEYINFO;
+			m_pCreateKey = new KEYINFO;
 		}
 
 		const char* pType = typeid(T).name();
 
 		if(strcmp(pType, "char") == 0 ||
-			strcmp(pType, "int" == 0)) {
+			strcmp(pType, "int") == 0) {
 			m_pCreateKey->vecKey.push_back((DWORD)data);
 		}
 		else {
 			m_pCreateKey->strName = data;
-				m_mapKey.insert(make_pair(m_pCreateKey->strName, m_pCreateKey));
+			m_mapKey.insert(make_pair(m_pCreateKey->strName, m_pCreateKey));
 		}
 
 		AddKey(args...);
@@ -56,8 +56,3 @@ public:
 
 	DECLARE_SINGLE(CInput)
 };
-
-void Test() {
-	unique_ptr<int> num(new int(5));
-
-}
