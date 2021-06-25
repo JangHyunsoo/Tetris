@@ -18,7 +18,6 @@ protected:
 private:
 	static list<CObj*> m_ObjList;
 	static unordered_map<string, CObj*> m_mapPrototype;
-
 public:
 	static void AddObj(CObj* pObj); 
 	static CObj* FindObject(const string& strTag);
