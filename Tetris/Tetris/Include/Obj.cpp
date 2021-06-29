@@ -139,11 +139,6 @@ CObj* CObj::CreateCloneObj(const string& strPrototypeKey, const string& strTag, 
 
 	pObj->SetTag(strTag);
 
-	if (!pObj->Init()) {
-		SAFE_RELEASE(pObj);
-		return NULL;
-	}
-
 	if (pLayer) {
 		pLayer->AddObject(pObj);
 	}

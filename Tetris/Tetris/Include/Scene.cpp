@@ -144,6 +144,7 @@ void CScene::Collision(float fDeltaTime)
 
 void CScene::Render(HDC hDC, float fDeltaTime)
 {
+	Rectangle(hDC, 0, 0, 1280, 720);
 	auto iterEnd = m_LayerList.end();
 
 	for (auto iter = m_LayerList.begin(); iter != iterEnd;) {

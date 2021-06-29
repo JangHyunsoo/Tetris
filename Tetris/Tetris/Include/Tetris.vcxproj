@@ -145,8 +145,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlockData.cpp" />
+    <ClCompile Include="BlockDataBase.cpp" />
     <ClCompile Include="CursorBlock.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MoveObj.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="Core.cpp" />
@@ -160,6 +163,8 @@
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlockData.h" />
+    <ClInclude Include="BlockDataBase.h" />
     <ClInclude Include="CursorBlock.h" />
     <ClInclude Include="Flag.h" />
     <ClInclude Include="Function.h" />
@@ -168,6 +173,7 @@
     <ClInclude Include="InGameScene.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Layer.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Mecro.h" />
     <ClInclude Include="MoveObj.h" />
     <ClInclude Include="Obj.h" />

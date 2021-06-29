@@ -27,6 +27,10 @@ typedef struct _tagPosition {
 		y = (float)pt.y;
 	}
 
+	_tagPosition Reserve() {
+		return _tagPosition(y, x);
+	}
+
 	void operator = (const _tagPosition& pos) {
 		x = pos.x;
 		y = pos.y;

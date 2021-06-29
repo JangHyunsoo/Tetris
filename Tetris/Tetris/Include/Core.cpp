@@ -1,5 +1,6 @@
 #include "Core.h"
 #include "SceneManager.h"
+#include "BlockDataBase.h"
 #include "Timer.h"
 #include "Input.h"
 #include "Obj.h"
@@ -33,6 +34,9 @@ bool CCore::Init(HINSTANCE hInst)
 	Create();
 
 	m_hDC = GetDC(m_hWnd);
+
+	if (!CBlockDataBase::Init())
+		return false;
 
 	if (!GET_SINGE(CTimer)->Init())
 		return false;

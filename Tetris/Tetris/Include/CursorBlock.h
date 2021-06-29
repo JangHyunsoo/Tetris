@@ -13,6 +13,8 @@ public:
 private:
 	double m_fDelay;
 	double m_fSpeed;
+	int m_iRot;
+	char m_cType;
 public:
 	void SetSpeed(double fSpeed) {
 		m_fSpeed = fSpeed;
@@ -20,6 +22,14 @@ public:
 
 	void SetDelay(double fDelay) {
 		m_fDelay = fDelay;
+	}
+	
+	void SetRotation(int iRot) {
+		m_iRot = iRot;
+	}
+
+	void SetType(char cType) {
+		m_cType = cType;
 	}
 
 	double GetSpeed() const {
@@ -30,11 +40,19 @@ public:
 		return m_fDelay;
 	}
 
+	int GetRotation() const {
+		return m_iRot;
+	}
+
+	char GetType() const {
+		return m_cType;
+	}
+	
 private:
 	void AddDelay(double fDelay) {
 		m_fDelay += fDelay;
 	}
-	
+
 public:
 	virtual bool Init();
 	virtual void Input(float fDeltaTime);
@@ -45,4 +63,3 @@ public:
 	virtual CCursorBlock* Clone();
 
 };
-
