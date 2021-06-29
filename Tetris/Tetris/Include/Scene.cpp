@@ -150,6 +150,7 @@ void CScene::Render(HDC hDC, float fDeltaTime)
 	for (auto iter = m_LayerList.begin(); iter != iterEnd;) {
 		if (!(*iter)->GetEnable()) {
 			++iter;
+
 			continue;
 		}
 
