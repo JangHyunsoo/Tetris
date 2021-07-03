@@ -29,7 +29,7 @@ public:
 				arrResult.emplace_back(m_arrData[i].y * -1, m_arrData[i].x);
 				break;
 			case 2:
-				arrResult.emplace_back(m_arrData[i].x * -1, m_arrData[i].y);
+				arrResult.emplace_back(m_arrData[i].x * -1, m_arrData[i].y * -1);
 				break;
 			case 3:
 				arrResult.emplace_back(m_arrData[i].y, m_arrData[i].x * -1);

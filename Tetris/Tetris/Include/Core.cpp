@@ -1,5 +1,7 @@
 #include "Core.h"
 #include "SceneManager.h"
+#include "ResourceManager.h"
+#include "PathManager.h"
 #include "BlockDataBase.h"
 #include "Timer.h"
 #include "Input.h"
@@ -16,10 +18,13 @@ CCore::CCore()
 
 CCore::~CCore()
 {
-	DESTROY_SINGE(CTimer)
-	DESTROY_SINGE(CInput)
-	DESTROY_SINGE(CSceneManager)
-	DESTROY_SINGE(CCore)
+	DESTROY_SINGE(CSceneManager);
+	DESTROY_SINGE(CInput);
+	DESTROY_SINGE(CPathManager);
+	DESTROY_SINGE(CResourceManager);
+	DESTROY_SINGE(CTimer);
+
+	ReleaseDC(m_hWnd, m_hDC);
 }
 
 bool CCore::Init(HINSTANCE hInst)
@@ -39,6 +44,12 @@ bool CCore::Init(HINSTANCE hInst)
 		return false;
 
 	if (!GET_SINGE(CTimer)->Init())
+		return false;
+
+	if (!GET_SINGE(CPathManager)->Init())
+		return false;
+
+	if (!GET_SINGE(CResourceManager)->Init(m_hInst, m_hDC))
 		return false;
 
 	if (!GET_SINGE(CInput)->Init(m_hWnd))
@@ -64,7 +75,7 @@ BOOL CCore::Create()
 	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
 
 	SetWindowPos(m_hWnd, HWND_TOPMOST, 100, 100, rc.right - rc.left, rc.bottom - rc.top, SWP_NOMOVE | SWP_NOZORDER);
-	
+
 	ShowWindow(m_hWnd, SW_SHOW);
 	UpdateWindow(m_hWnd);
 
@@ -133,14 +144,14 @@ void CCore::Collision(float fDeltaTime)
 
 void CCore::Render(float fDeltaTime)
 {
-	GET_SINGE(CSceneManager)->Render(m_hDC,fDeltaTime);
+	GET_SINGE(CSceneManager)->Render(m_hDC, fDeltaTime);
 }
 
 LRESULT CCore::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
-	case WM_DESTROY: 
+	case WM_DESTROY:
 		m_bLoop = false;
 		PostQuitMessage(0);
 		break;

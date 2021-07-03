@@ -47,6 +47,15 @@ public:
 	char GetType() const {
 		return m_cType;
 	}
+
+public:
+	void TurnLeft() {
+		m_iRot++;
+	}
+	
+	void TurnRight() {
+		m_iRot--;
+	}
 	
 private:
 	void AddDelay(double fDelay) {

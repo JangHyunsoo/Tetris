@@ -23,11 +23,11 @@ CCursorBlock::~CCursorBlock()
 bool CCursorBlock::Init()
 {
 	SetPos(300.f, 300.f);
-	SetSize(20.f, 20.f);
+	SetSize(16.f, 16.f);
 	SetSpeed(1.0f);
 	SetDelay(0.0f);
 	SetRotation(0);
-	SetType('T');
+	SetType('L');
 
 	return true;
 }
@@ -36,13 +36,21 @@ void CCursorBlock::Input(float fDeltaTime)
 {
 	CMoveObj::Input(fDeltaTime);
 	if (GET_SINGE(CInput)->KeyDown("MoveLeft")) {
-		Move(-20, 0);
+		Move(-16, 0);
 		m_fDelay *= 0.9f;
 	}
 
 	if (GET_SINGE(CInput)->KeyDown("MoveRight")) {
-		Move(20, 0);
+		Move(16, 0);
 		m_fDelay *= 0.9f;
+	}
+
+	if (GET_SINGE(CInput)->KeyDown("TurnLeft")) {
+		TurnLeft();
+	}
+	
+	if (GET_SINGE(CInput)->KeyDown("TurnRight")) {
+		TurnRight();
 	}
 }
 
@@ -58,7 +66,7 @@ int CCursorBlock::LateUpdate(float fDeltaTime)
 {
 	CMoveObj::LateUpdate(fDeltaTime);
 	if (m_fDelay >= m_fSpeed) {
-		Move(0, 20);
+		Move(0, 16);
 		m_fDelay = 0;
 	}
 

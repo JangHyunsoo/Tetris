@@ -15,3 +15,10 @@ using namespace std;
 #include "Type.h"
 #include "Flag.h"
 #include "Function.h"
+
+
+#define PI 3.141592f
+
+#define ROOT_PATH "RootPath"
+#define TEXTURE_PATH "TexturePath"
+

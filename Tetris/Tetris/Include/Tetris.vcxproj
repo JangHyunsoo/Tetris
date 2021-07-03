@@ -156,6 +156,7 @@
     <ClCompile Include="InGameScene.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PathManager.cpp" />
     <ClCompile Include="Ref.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="Mecro.h" />
     <ClInclude Include="MoveObj.h" />
     <ClInclude Include="Obj.h" />
+    <ClInclude Include="PathManager.h" />
     <ClInclude Include="Ref.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
