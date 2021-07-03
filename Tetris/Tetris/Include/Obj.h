@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Ref.h"
+#include "Texture.h"
 #include "Layer.h"
 #include "Scene.h"
 
@@ -18,6 +19,7 @@ protected:
 private:
 	static list<CObj*> m_ObjList;
 	static unordered_map<string, CObj*> m_mapPrototype;
+
 public:
 	static void AddObj(CObj* pObj); 
 	static CObj* FindObject(const string& strTag);
@@ -52,6 +54,7 @@ protected:
 	POSITION m_tPos;
 	_SIZE m_tSize;
 	POSITION m_tPivot;
+	class CTexture* m_pTexture;
 
 public:
 	string GetTag() const {
@@ -113,6 +116,11 @@ public:
 	void SetPivot(const POINT& tPivot) {
 		m_tPivot = tPivot;
 	}
+
+	public:
+		void SetTexture(class CTexture* pTexture);
+		void SetTexture(const string& strKey, const wchar_t* pFileName = NULL, const string& strPathKey = TEXTURE_PATH);
+
 
 public:
 	virtual bool Init() = 0;

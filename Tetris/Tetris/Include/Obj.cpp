@@ -1,21 +1,26 @@
 #include "Obj.h"
 #include "Layer.h"
+#include "Texture.h"
+#include "ResourceManager.h"
 
 list<CObj*> CObj::m_ObjList;
 unordered_map<string, CObj*> CObj::m_mapPrototype;
 
-CObj::CObj()
+CObj::CObj() :
+	m_pTexture(NULL)
 {
 }
 
 CObj::CObj(const CObj& obj)
 {
 	*this = obj;
-	m_iRef = 1;
+
+	if (m_pTexture)
+		m_pTexture->AddRef();
 }
 
 CObj::~CObj() {
-
+	SAFE_RELEASE(m_pTexture);
 }
 
 void CObj::AddObj(CObj* pObj)
@@ -89,6 +94,21 @@ void CObj::ErasePrototype()
 	Safe_Release_Map(m_mapPrototype);
 }
 
+void CObj::SetTexture(CTexture* pTexture)
+{
+	SAFE_RELEASE(m_pTexture);
+	m_pTexture = pTexture;
+
+	if (pTexture)
+		pTexture->AddRef();
+}
+
+void CObj::SetTexture(const string& strKey, const wchar_t* pFileName, const string& strPathKey)
+{
+	SAFE_RELEASE(m_pTexture);
+	m_pTexture = GET_SINGE(CResourceManager)->LoadTexture(strKey, pFileName, strPathKey);
+}
+
 void CObj::Input(float fDeltaTime)
 {
 }
@@ -110,6 +130,10 @@ void CObj::Collision(float fDeltaTime)
 
 void CObj::Render(HDC hDC, float fDeltaTime)
 {
+	
+	if (m_pTexture) {
+		BitBlt(hDC, m_tPos.x, m_tPos.y, m_tSize.x, m_tSize.y, m_pTexture->GetDC(), 0, 0, SRCCOPY);
+	}
 }
 
 CObj* CObj::CreateObj(CObj* pClone, const string& strTag, CLayer* pLayer)

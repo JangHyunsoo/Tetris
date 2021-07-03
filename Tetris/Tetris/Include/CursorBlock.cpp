@@ -28,6 +28,7 @@ bool CCursorBlock::Init()
 	SetDelay(0.0f);
 	SetRotation(0);
 	SetType('L');
+	SetTexture("Block", L"Yellow.bmp");
 
 	return true;
 }
@@ -80,13 +81,16 @@ void CCursorBlock::Collision(float fDeltaTime)
 
 void CCursorBlock::Render(HDC hDC, float fDeltaTime)
 {
-	CMoveObj::Render(hDC, fDeltaTime);
+	//CMoveObj::Render(hDC, fDeltaTime);
 	vector<POSITION> arrData = CBlockDataBase::GetData(m_cType)->GetData(m_iRot);
 
 	for (int i = 0; i < arrData.size(); i++) {
 		int x = m_tPos.x + (arrData[i].x * m_tSize.x);
 		int y = m_tPos.y + (arrData[i].y * m_tSize.y);
-		Rectangle(hDC, x, y, x + m_tSize.x, y + m_tSize.y);
+		if(!m_pTexture)
+			Rectangle(hDC, x, y, x + m_tSize.x, y + m_tSize.y);
+		else
+			BitBlt(hDC, x, y, m_tSize.x, m_tSize.y, m_pTexture->GetDC(), 0, 0, SRCCOPY);
 	}
 
 	//Rectangle(hDC, m_tPos.x, m_tPos.y, m_tPos.x + m_tSize.x, m_tPos.y + m_tSize.y);

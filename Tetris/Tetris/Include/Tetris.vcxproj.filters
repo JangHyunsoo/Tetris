@@ -49,6 +49,9 @@
     <Filter Include="01.Core\03.Path">
       <UniqueIdentifier>{57bd65a6-22f2-472f-9607-34f640af825a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05.Resources">
+      <UniqueIdentifier>{9587da10-ab19-4318-8085-58b47d52469c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -101,6 +104,12 @@
     </ClCompile>
     <ClCompile Include="PathManager.cpp">
       <Filter>01.Core\03.Path</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>05.Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>05.Resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +179,12 @@
     <ClInclude Include="PathManager.h">
       <Filter>01.Core\03.Path</Filter>
     </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>05.Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>05.Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Tetris.rc">
@@ -180,5 +195,8 @@
     <Image Include="icon1.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>
