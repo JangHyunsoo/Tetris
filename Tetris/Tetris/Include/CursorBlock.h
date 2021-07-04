@@ -15,6 +15,7 @@ private:
 	double m_fSpeed;
 	int m_iRot;
 	char m_cType;
+	POSITION m_tLocalPos;
 public:
 	void SetSpeed(double fSpeed) {
 		m_fSpeed = fSpeed;

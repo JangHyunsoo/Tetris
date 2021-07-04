@@ -18,7 +18,7 @@ bool CInGameScene::Init()
 
 	CObj::CreatePrototype<CCursorBlock>("CursorBlock");
 
-	CObj* pBlock = CObj::CreateCloneObj("CursorBlock", "block1", pLayer);
+	CObj* pBlock = CObj::CreateCloneObj("CursorBlock", "block", pLayer);
 
 	SAFE_RELEASE(pBlock);
 

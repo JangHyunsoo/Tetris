@@ -40,9 +40,6 @@
     <Filter Include="01.Core\02.Input">
       <UniqueIdentifier>{e2632841-aae5-4d7c-8079-9b1d0a246194}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Object\02.StaticObj\01.Map">
-      <UniqueIdentifier>{e59dfb87-78d9-4d2b-8e0c-54fafa7cae0e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04.Data">
       <UniqueIdentifier>{e4950175-21f4-45de-ae88-9ce13f3de7cd}</UniqueIdentifier>
     </Filter>
@@ -51,6 +48,9 @@
     </Filter>
     <Filter Include="05.Resources">
       <UniqueIdentifier>{9587da10-ab19-4318-8085-58b47d52469c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Core\04.Rule">
+      <UniqueIdentifier>{41985dd6-b736-4ac5-8dca-f89fd72b1f96}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,9 +93,6 @@
     <ClCompile Include="Input.cpp">
       <Filter>01.Core\02.Input</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>03.Object\02.StaticObj\01.Map</Filter>
-    </ClCompile>
     <ClCompile Include="BlockData.cpp">
       <Filter>04.Data</Filter>
     </ClCompile>
@@ -110,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>05.Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="RuleManager.cpp">
+      <Filter>01.Core\04.Rule</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -167,9 +167,6 @@
     <ClInclude Include="Input.h">
       <Filter>01.Core\02.Input</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>03.Object\02.StaticObj\01.Map</Filter>
-    </ClInclude>
     <ClInclude Include="BlockData.h">
       <Filter>04.Data</Filter>
     </ClInclude>
@@ -184,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>05.Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="RuleManager.h">
+      <Filter>01.Core\04.Rule</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

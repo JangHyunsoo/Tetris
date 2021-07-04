@@ -1,6 +1,7 @@
 #include "Core.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"
+#include "Texture.h"
 #include "PathManager.h"
 #include "BlockDataBase.h"
 #include "Timer.h"
@@ -144,7 +145,14 @@ void CCore::Collision(float fDeltaTime)
 
 void CCore::Render(float fDeltaTime)
 {
-	GET_SINGE(CSceneManager)->Render(m_hDC, fDeltaTime);
+	CTexture* pBackBuffer = GET_SINGE(CResourceManager)->GetBackBuffer();
+
+	Rectangle(pBackBuffer->GetDC(), 0, 0, 1280, 720);
+	GET_SINGE(CSceneManager)->Render(pBackBuffer->GetDC(), fDeltaTime);
+
+	BitBlt(m_hDC, 0, 0, m_tRS.iW, m_tRS.iH, pBackBuffer->GetDC(), 0, 0, SRCCOPY);
+
+	SAFE_RELEASE(pBackBuffer);
 }
 
 LRESULT CCore::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
