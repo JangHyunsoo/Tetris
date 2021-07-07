@@ -52,6 +52,9 @@
     <Filter Include="01.Core\04.Rule">
       <UniqueIdentifier>{41985dd6-b736-4ac5-8dca-f89fd72b1f96}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Object\02.StaticObj\01.Map">
+      <UniqueIdentifier>{f70567d9-a1d0-40ae-b7cd-6f7dc71344d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -110,6 +113,9 @@
     </ClCompile>
     <ClCompile Include="RuleManager.cpp">
       <Filter>01.Core\04.Rule</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>03.Object\02.StaticObj\01.Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="RuleManager.h">
       <Filter>01.Core\04.Rule</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>03.Object\02.StaticObj\01.Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

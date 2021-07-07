@@ -28,7 +28,7 @@ bool CCursorBlock::Init()
 	SetDelay(0.0f);
 	SetRotation(0);
 	SetType('L');
-	SetTexture("Block", L"Yellow.bmp");
+	SetTexture("Yellow", L"Yellow.bmp");
 
 	return true;
 }
