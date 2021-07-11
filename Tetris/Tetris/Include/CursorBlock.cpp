@@ -1,6 +1,7 @@
 #include "CursorBlock.h"
 #include "Input.h"
 #include "BlockDataBase.h"
+#include "RuleManager.h"
 
 CCursorBlock::CCursorBlock()
 {
@@ -20,14 +21,20 @@ CCursorBlock::~CCursorBlock()
 {
 }
 
+void CCursorBlock::MakeOrigin(char cType)
+{
+	m_fDelay = 0;
+	m_iRot = 0;
+	m_cType = cType;
+	m_tGamePos = POSITION(5, 1);
+	SetPos(GET_SINGE(CRuleManager)->ToWorldPos(m_tGamePos));
+}
+
 bool CCursorBlock::Init()
 {
-	SetPos(300.f, 300.f);
-	SetSize(16.f, 16.f);
 	SetSpeed(1.0f);
 	SetDelay(0.0f);
 	SetRotation(0);
-	SetType('L');
 	SetTexture("Yellow", L"Yellow.bmp");
 
 	return true;
@@ -37,21 +44,35 @@ void CCursorBlock::Input(float fDeltaTime)
 {
 	CMoveObj::Input(fDeltaTime);
 	if (GET_SINGE(CInput)->KeyDown("MoveLeft")) {
-		Move(-16, 0);
-		m_fDelay *= 0.9f;
+		if (GET_SINGE(CRuleManager)->CheckMove(m_tGamePos.x - 1, m_tGamePos.y, m_cType, m_iRot)){
+			MoveGame(-1, 0);
+			Move(-GetSize().x, 0);
+			m_fDelay *= 0.9f;
+		}
 	}
 
 	if (GET_SINGE(CInput)->KeyDown("MoveRight")) {
-		Move(16, 0);
-		m_fDelay *= 0.9f;
+		if (GET_SINGE(CRuleManager)->CheckMove(m_tGamePos.x + 1, m_tGamePos.y, m_cType, m_iRot)) {
+			MoveGame(1, 0);
+			Move(GetSize().x, 0);
+			m_fDelay *= 0.9f;
+		}
+	}
+
+	if (GET_SINGE(CInput)->KeyPress("Down") || GET_SINGE(CInput)->KeyDown("Down")) {
+		AddDelay(fDeltaTime * 10);
 	}
 
 	if (GET_SINGE(CInput)->KeyDown("TurnLeft")) {
-		TurnLeft();
+		if (GET_SINGE(CRuleManager)->CheckMove(m_tGamePos.x, m_tGamePos.y, m_cType, m_iRot + 1)) {
+			TurnLeft();
+		}
 	}
 	
 	if (GET_SINGE(CInput)->KeyDown("TurnRight")) {
-		TurnRight();
+		if (GET_SINGE(CRuleManager)->CheckMove(m_tGamePos.x, m_tGamePos.y, m_cType, m_iRot - 1)) {
+			TurnRight();
+		}
 	}
 }
 
@@ -67,8 +88,15 @@ int CCursorBlock::LateUpdate(float fDeltaTime)
 {
 	CMoveObj::LateUpdate(fDeltaTime);
 	if (m_fDelay >= m_fSpeed) {
-		Move(0, 16);
-		m_fDelay = 0;
+		if (GET_SINGE(CRuleManager)->CheckMove(m_tGamePos.x, m_tGamePos.y + 1, m_cType, m_iRot)) {
+			MoveGame(0, 1);
+			Move(0, GetSize().x);
+			m_fDelay = 0;
+		}
+		else {
+			GET_SINGE(CRuleManager)->SetBlock(m_tGamePos.x, m_tGamePos.y, m_cType, m_iRot);
+			MakeOrigin(GET_SINGE(CRuleManager)->GetQueueBlock());
+		}
 	}
 
 	return 0;
@@ -82,18 +110,19 @@ void CCursorBlock::Collision(float fDeltaTime)
 void CCursorBlock::Render(HDC hDC, float fDeltaTime)
 {
 	//CMoveObj::Render(hDC, fDeltaTime);
-	vector<POSITION> arrData = CBlockDataBase::GetData(m_cType)->GetData(m_iRot);
+	vector<POSITION> arrData = CBlockDataBase::GetData(m_cType)->GetData(m_iRot % 4);
 
 	for (int i = 0; i < arrData.size(); i++) {
 		int x = m_tPos.x + (arrData[i].x * m_tSize.x);
 		int y = m_tPos.y + (arrData[i].y * m_tSize.y);
-		if(!m_pTexture)
-			Rectangle(hDC, x, y, x + m_tSize.x, y + m_tSize.y);
-		else
-			BitBlt(hDC, x, y, m_tSize.x, m_tSize.y, m_pTexture->GetDC(), 0, 0, SRCCOPY);
+		BitBlt(hDC, x, y, m_tSize.x, m_tSize.y, m_pTexture->GetDC(), 0, 0, SRCCOPY);
 	}
+	/*
+	wchar_t buffer[256];
+	wsprintfW(buffer, L"%d", m_iRot);
 
-	//Rectangle(hDC, m_tPos.x, m_tPos.y, m_tPos.x + m_tSize.x, m_tPos.y + m_tSize.y);
+	TextOut(hDC, 500, 100, buffer, 12);
+	*/
 }
 
 CCursorBlock* CCursorBlock::Clone()

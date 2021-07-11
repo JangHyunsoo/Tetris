@@ -1,11 +1,16 @@
 #include "Map.h"
 #include "BlockDataBase.h"
 
+CMap::CMap() {
 
-CMap::CMap()
+}
+
+CMap::CMap(const CMap& obj) :
+	CStaticObj(obj)
 {
 	memset(m_arrCell, false, sizeof(m_arrCell));
 }
+
 
 CMap::~CMap()
 {
@@ -52,24 +57,26 @@ bool CMap::CheckMove(int x, int y, char cBlockType, int iRot)
 
 void CMap::BreakLine(int y)
 {
-	for (int i = y; i < m_iHeight - 1; i++) {
-		for (int j = 0; j < m_iWidth; i++) {
-			m_arrCell[j][i] = m_arrCell[j][i + 1];
+	for (int i = y; i > 0; i--) {
+		for (int j = 0; j < m_iWidth; j++) {
+			m_arrCell[j][i] = m_arrCell[j][i - 1];
 		}
 	}
 
 	for (int i = 0; i < m_iWidth; i++) {
-		m_arrCell[i][m_iHeight - 1] = false;
+		m_arrCell[i][0] = false;
 	}
 }
 
 bool CMap::IsMap(int x, int y)
 {
-	return x < m_iWidth&& y < m_iHeight&& x >= 0 && y >= 0;
+	return x < m_iWidth && y < m_iHeight && x >= 0 && y >= 0;
 }
 
 bool CMap::CheckLine(int y)
 {
+	if (!IsMap(0, y)) return false;
+
 	for (int i = 0; i < m_iWidth; i++) {
 		if (!m_arrCell[i][y]) return false;
 	}
@@ -81,12 +88,17 @@ void CMap::Render(HDC hDC, float fDeltaTime)
 	
 	for (int x = 0; x < m_iWidth; x++) {
 		for (int y = 0; y < m_iHeight; y++) {
-			int dx = m_tPos.x + x * BLOCK_SIZE;
-			int dy = m_tPos.y + y * BLOCK_SIZE;
+			int dx = m_tPos.x + x * GetSize().x;
+			int dy = m_tPos.y + y * GetSize().x;
 			if (m_arrCell[x][y])
-				BitBlt(hDC, dx, dy, dx + BLOCK_SIZE, dy + BLOCK_SIZE, m_pTexture->GetDC(), 0, 0, SRCCOPY);
+				BitBlt(hDC, dx, dy, dx + GetSize().x, dy + GetSize().x, m_pTexture->GetDC(), 0, 0, SRCCOPY);
 			else
-				Rectangle(hDC, dx, dy, dx + BLOCK_SIZE, dy + BLOCK_SIZE);
+				Rectangle(hDC, dx, dy, dx + GetSize().x, dy + GetSize().x);
 		}
 	}
+}
+
+CMap* CMap::Clone()
+{
+	return new CMap(*this);
 }

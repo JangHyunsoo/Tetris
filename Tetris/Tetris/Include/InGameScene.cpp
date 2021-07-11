@@ -1,5 +1,6 @@
 #include "InGameScene.h"
 #include "CursorBlock.h"
+#include "RuleManager.h"
 
 CInGameScene::CInGameScene()
 {
@@ -15,12 +16,10 @@ bool CInGameScene::Init()
 		return false;
 
 	CLayer* pLayer = FindLayer("Default");
-
-	CObj::CreatePrototype<CCursorBlock>("CursorBlock");
-
-	CObj* pBlock = CObj::CreateCloneObj("CursorBlock", "block", pLayer);
-
-	SAFE_RELEASE(pBlock);
+	GET_SINGE(CRuleManager)->StartGame(POSITION(32, 32), 32, pLayer);
+	
+	pLayer = FindLayer("UI");
+	GET_SINGE(CRuleManager)->CreateHold(POSITION(400, 32), pLayer);
 
 	return true;
 }

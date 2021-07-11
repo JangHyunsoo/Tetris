@@ -11,9 +11,10 @@ private:
 	HWND m_hWnd;
 	HDC m_hDC;
 	RESOLUTION m_tRS;
+	const wchar_t* m_strName;
 
 public:
-	bool Init(HINSTANCE hInst);
+	bool Init(HINSTANCE hInst, const wchar_t* strName, int iWidth, int iHeight);
 	int Run();
 private:
 	void Logic();

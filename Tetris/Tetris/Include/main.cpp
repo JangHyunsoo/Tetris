@@ -4,7 +4,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
 	_In_ LPWSTR IpCmdLine,
 	_In_ int nCmdShow){
-	if (!CCore::GetInst()->Init(hInstance)) {
+
+	if (!CCore::GetInst()->Init(hInstance, L"Tetris", 720, 720)) {
 		CCore::DestroyInst();
 		return 0;
 	}

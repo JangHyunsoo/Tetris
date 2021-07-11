@@ -16,11 +16,10 @@ private:
 public:
 	vector<POSITION> GetData(int rot) {
 		vector<POSITION> arrResult;
-		rot %= m_iSize;
 		
 		for (int i = 0; i < m_arrData.size(); i++)
 		{
-			switch (rot)
+			switch (rot % m_iSize)
 			{
 			case 0:
 				arrResult.emplace_back(m_arrData[i].x, m_arrData[i].y);
@@ -33,6 +32,9 @@ public:
 				break;
 			case 3:
 				arrResult.emplace_back(m_arrData[i].y, m_arrData[i].x * -1);
+				break; 
+			default:
+				arrResult.emplace_back(m_arrData[i].x, m_arrData[i].y);
 				break;
 			}
 		}

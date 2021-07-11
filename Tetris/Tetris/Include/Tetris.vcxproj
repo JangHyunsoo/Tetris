@@ -150,6 +150,7 @@
     <ClCompile Include="BlockData.cpp" />
     <ClCompile Include="BlockDataBase.cpp" />
     <ClCompile Include="CursorBlock.cpp" />
+    <ClCompile Include="Hold.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="RuleManager.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="Function.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Core.h" />
+    <ClInclude Include="Hold.h" />
     <ClInclude Include="InGameScene.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Layer.h" />

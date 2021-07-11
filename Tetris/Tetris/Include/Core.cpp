@@ -1,5 +1,6 @@
 #include "Core.h"
 #include "SceneManager.h"
+#include "RuleManager.h"
 #include "ResourceManager.h"
 #include "Texture.h"
 #include "PathManager.h"
@@ -24,24 +25,29 @@ CCore::~CCore()
 	DESTROY_SINGE(CPathManager);
 	DESTROY_SINGE(CResourceManager);
 	DESTROY_SINGE(CTimer);
+	DESTROY_SINGE(CRuleManager);
 
 	ReleaseDC(m_hWnd, m_hDC);
 }
 
-bool CCore::Init(HINSTANCE hInst)
+bool CCore::Init(HINSTANCE hInst, const wchar_t* strName, int iWidth, int iHeight)
 {
 	this->m_hInst = hInst;
 
-	MyRegisterClass();
+	m_strName = strName;
+	m_tRS.iW = iWidth;
+	m_tRS.iH = iHeight;
 
-	m_tRS.iW = 1280;
-	m_tRS.iH = 720;
+	MyRegisterClass();
 
 	Create();
 
 	m_hDC = GetDC(m_hWnd);
 
 	if (!CBlockDataBase::Init())
+		return false;
+
+	if (!GET_SINGE(CRuleManager)->Init())
 		return false;
 
 	if (!GET_SINGE(CTimer)->Init())
@@ -64,7 +70,7 @@ bool CCore::Init(HINSTANCE hInst)
 
 BOOL CCore::Create()
 {
-	m_hWnd = CreateWindowW(L"hello world", L"hello world", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, m_hInst, nullptr);
+	m_hWnd = CreateWindowW(m_strName, m_strName, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, m_hInst, nullptr);
 
 	if (!m_hWnd) {
 		return FALSE;
@@ -147,7 +153,7 @@ void CCore::Render(float fDeltaTime)
 {
 	CTexture* pBackBuffer = GET_SINGE(CResourceManager)->GetBackBuffer();
 
-	Rectangle(pBackBuffer->GetDC(), 0, 0, 1280, 720);
+	Rectangle(pBackBuffer->GetDC(), 0, 0, 1280, 1280);
 	GET_SINGE(CSceneManager)->Render(pBackBuffer->GetDC(), fDeltaTime);
 
 	BitBlt(m_hDC, 0, 0, m_tRS.iW, m_tRS.iH, pBackBuffer->GetDC(), 0, 0, SRCCOPY);
@@ -185,7 +191,7 @@ ATOM CCore::MyRegisterClass() {
 	wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 	wcex.lpszMenuName = NULL;
-	wcex.lpszClassName = L"hello world";
+	wcex.lpszClassName = m_strName;
 	wcex.hIconSm = LoadIcon(m_hInst, MAKEINTRESOURCE(IDI_ICON1));
 
 	return RegisterClassExW(&wcex);

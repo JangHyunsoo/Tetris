@@ -40,7 +40,6 @@ void CInput::Update(float fDeltaTime)
 			}
 
 			if (iPushCount == iter->second->vecKey.size()) {
-			//if(GetAsyncKeyState(iter->second->vecKey[i]) & 0x8000){
 				if (!iter->second->bDown && !iter->second->bPress) {
 					iter->second->bDown = true;
 					iter->second->bUp = false;

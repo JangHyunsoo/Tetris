@@ -3,8 +3,9 @@
 class CMap :
     public CStaticObj
 {
-private:
+public:
     CMap();
+    CMap(const CMap& obj);
     ~CMap();
 private:
     const int m_iHeight = 20;
@@ -16,14 +17,14 @@ public:
 public:
     void SetBlock(int x, int y, char cBlockType, int iRot);
     bool CheckMove(int x, int y, char cBlockType, int iRot);
+    bool CheckLine(int y);
     void BreakLine(int y);
 
 private:
     bool IsMap(int x, int y); 
-    bool CheckLine(int y);
 
 public:
-    bool Init();
-    void Render(HDC hDC, float fDeltaTime);
-
+    virtual bool Init();
+    virtual void Render(HDC hDC, float fDeltaTime);
+    virtual CMap* Clone();
 };

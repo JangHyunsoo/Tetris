@@ -9,4 +9,3 @@ public:
 	static bool Init();
 	static CBlockData* GetData(char cKey);
 };
-

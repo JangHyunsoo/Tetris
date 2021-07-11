@@ -3,10 +3,10 @@
 class CStaticObj :
     public CObj
 {
-protected:
+public:
 	CStaticObj();
 	CStaticObj(const CStaticObj& obj);
-	~CStaticObj();
+	virtual ~CStaticObj();
 public:
 	virtual bool Init() = 0;
 	virtual void Input(float fDeltaTime);

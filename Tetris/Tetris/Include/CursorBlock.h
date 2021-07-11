@@ -15,7 +15,7 @@ private:
 	double m_fSpeed;
 	int m_iRot;
 	char m_cType;
-	POSITION m_tLocalPos;
+	POSITION m_tGamePos;
 public:
 	void SetSpeed(double fSpeed) {
 		m_fSpeed = fSpeed;
@@ -31,6 +31,10 @@ public:
 
 	void SetType(char cType) {
 		m_cType = cType;
+	}
+
+	void SetGamePos(POSITION tPos) {
+		m_tGamePos = tPos;
 	}
 
 	double GetSpeed() const {
@@ -49,19 +53,30 @@ public:
 		return m_cType;
 	}
 
+	POSITION GetGamePos() {
+		return m_tGamePos;
+	}
+
 public:
 	void TurnLeft() {
-		m_iRot++;
+		m_iRot = abs((m_iRot + 1) % 4);
 	}
 	
 	void TurnRight() {
-		m_iRot--;
+		m_iRot = abs((m_iRot - 1) % 4);
 	}
 	
 private:
 	void AddDelay(double fDelay) {
 		m_fDelay += fDelay;
 	}
+	void MoveGame(int x, int y) {
+		m_tGamePos.x += x;
+		m_tGamePos.y += y;
+	}
+	
+public:
+	void MakeOrigin(char cType);
 
 public:
 	virtual bool Init();
