@@ -58,6 +58,9 @@
     <Filter Include="03.Object\02.StaticObj\02.Hold">
       <UniqueIdentifier>{5a8c962c-6c73-426b-b1e4-92e7684146e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Object\02.StaticObj\03.BlockQueue">
+      <UniqueIdentifier>{750acdf1-a293-4f86-8ff7-4b5ad5d117fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -122,6 +125,9 @@
     </ClCompile>
     <ClCompile Include="Hold.cpp">
       <Filter>03.Object\02.StaticObj\02.Hold</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockQueue.cpp">
+      <Filter>03.Object\02.StaticObj\03.BlockQueue</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +208,9 @@
     </ClInclude>
     <ClInclude Include="Hold.h">
       <Filter>03.Object\02.StaticObj\02.Hold</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockQueue.h">
+      <Filter>03.Object\02.StaticObj\03.BlockQueue</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

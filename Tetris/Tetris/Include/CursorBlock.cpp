@@ -95,7 +95,9 @@ int CCursorBlock::LateUpdate(float fDeltaTime)
 		}
 		else {
 			GET_SINGE(CRuleManager)->SetBlock(m_tGamePos.x, m_tGamePos.y, m_cType, m_iRot);
-			MakeOrigin(GET_SINGE(CRuleManager)->GetQueueBlock());
+			MakeOrigin(GET_SINGE(CRuleManager)->GetBlockQueue()->PopQueueBlock());
+			if (!GET_SINGE(CRuleManager)->CheckMove(m_tGamePos.x, m_tGamePos.y, m_cType, m_iRot))
+				GET_SINGE(CRuleManager)->GameOver();
 		}
 	}
 

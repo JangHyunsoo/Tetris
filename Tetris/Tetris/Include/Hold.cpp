@@ -39,7 +39,7 @@ void CHold::Input(float fDeltaTime) {
         }
         else {
             ChangeType(GET_SINGE(CRuleManager)->GetBlock()->GetType());
-            GET_SINGE(CRuleManager)->MakeOriginBlock(GET_SINGE(CRuleManager)->GetQueueBlock());
+            GET_SINGE(CRuleManager)->MakeOriginBlock(GET_SINGE(CRuleManager)->GetBlockQueue()->PopQueueBlock());
         }
         m_bChange = false;
     }
@@ -47,7 +47,7 @@ void CHold::Input(float fDeltaTime) {
 
 void CHold::Render(HDC hDC, float fDeltaTime)
 {
-    Rectangle(hDC, m_tPos.x, m_tPos.y, m_tPos.x + m_tSize.x * 4 + 20, m_tPos.y + m_tSize.y * 4 + 20);
+   Rectangle(hDC, m_tPos.x, m_tPos.y, m_tPos.x + m_tSize.x * 4 + 20, m_tPos.y + m_tSize.y * 4 + 20);
 
    if (m_cType != ' ') {
         vector<POSITION> arrData = CBlockDataBase::GetData(m_cType)->GetData(0);

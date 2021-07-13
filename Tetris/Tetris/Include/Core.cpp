@@ -76,13 +76,10 @@ BOOL CCore::Create()
 		return FALSE;
 	}
 
-
 	RECT rc = { 0, 0, (LONG)m_tRS.iW, (LONG)m_tRS.iH };
 
 	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
-
 	SetWindowPos(m_hWnd, HWND_TOPMOST, 100, 100, rc.right - rc.left, rc.bottom - rc.top, SWP_NOMOVE | SWP_NOZORDER);
-
 	ShowWindow(m_hWnd, SW_SHOW);
 	UpdateWindow(m_hWnd);
 

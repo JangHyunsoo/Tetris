@@ -3,8 +3,7 @@
 
 DEFINITION_SINGLE(CRuleManager);
 
-CRuleManager::CRuleManager() :
-	m_vecType({'O','I','S','Z','L','J','T'})
+CRuleManager::CRuleManager()
 {
 }
 
@@ -17,21 +16,28 @@ bool CRuleManager::Init() {
 	return true;
 }
 
-void CRuleManager::StartGame(POSITION tZero, float fBlockSize, CLayer* pLayer)
+void CRuleManager::SetBlockSize(float fBlockSize)
+{
+	m_fBlockSize = fBlockSize;
+}
+
+
+void CRuleManager::StartGame(POSITION tZero, CLayer* pLayer)
 {
 	m_tZero = tZero;
-	m_fBlockSize = fBlockSize;
-
-	random_device rd;
-	mt19937 g(rd());
-	shuffle(m_vecType.begin(), m_vecType.end(), g);
-
-	for (auto cType : m_vecType) {
-		m_qBlockType.push(cType);
-	}
 
 	CreateMap(pLayer);
 	CreateBlock(pLayer);
+}
+
+void CRuleManager::CreateQueue(POSITION tPos, CLayer* pLayer)
+{
+	CObj::CreatePrototype<CBlockQueue>("BlockQueue");
+
+	m_pBlockQueue = static_cast<CBlockQueue*>(CObj::CreateCloneObj("BlockQueue", "blockqueue", pLayer));
+	m_pBlockQueue->SetSize(m_fBlockSize, m_fBlockSize);
+	m_pBlockQueue->SetPos(tPos);
+	m_pBlockQueue->FillQueue();
 }
 
 void CRuleManager::CreateHold(POSITION tPos, CLayer* pLayer)
@@ -49,7 +55,7 @@ void CRuleManager::CreateBlock(CLayer* pLayer)
 
 	m_pBlock = static_cast<CCursorBlock*>(CObj::CreateCloneObj("CursorBlock", "block", pLayer));
 
-	m_pBlock->SetType(m_qBlockType.front()); m_qBlockType.pop();
+	m_pBlock->SetType(m_pBlockQueue->PopQueueBlock());
 	m_pBlock->SetSize(m_fBlockSize, m_fBlockSize);
 	m_pBlock->SetGamePos(POSITION(5, 1));
 	m_pBlock->SetPos(ToWorldPos(m_pBlock->GetGamePos()));
@@ -81,26 +87,12 @@ void CRuleManager::SetBlock(int x, int y, char cBlockType, int iRot)
 	m_pHold->SetChange(true);
 }
 
-void CRuleManager::FillQueue() {
-	random_device rd;
-	mt19937 g(rd());
-	shuffle(m_vecType.begin(), m_vecType.end(), g);
-
-	for (auto cType : m_vecType) {
-		m_qBlockType.push(cType);
-	}
-}
-
-char CRuleManager::GetQueueBlock() {
-	if (m_qBlockType.size() <= 4) {
-		FillQueue();
-	}
-	char cType = m_qBlockType.front();
-	m_qBlockType.pop();
-	return cType;
-}
-
 void CRuleManager::MakeOriginBlock(char cType)
 {
 	m_pBlock->MakeOrigin(cType);
+}
+
+void CRuleManager::GameOver()
+{
+	// do something
 }

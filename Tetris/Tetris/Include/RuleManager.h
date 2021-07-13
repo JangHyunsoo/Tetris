@@ -3,6 +3,7 @@
 #include "CursorBlock.h"
 #include "Map.h"
 #include "Hold.h"
+#include "BlockQueue.h"
 
 class CRuleManager
 {
@@ -11,8 +12,6 @@ class CRuleManager
 private:
     POSITION m_tZero;
     float m_fBlockSize;
-    queue<char> m_qBlockType;
-    vector<char> m_vecType;
 
 private:
     // obj
@@ -20,10 +19,15 @@ private:
     CCursorBlock* m_pBlock;
     // ui
     CHold* m_pHold;
+    CBlockQueue* m_pBlockQueue;
 
 public:
     CCursorBlock* GetBlock() {
         return m_pBlock;
+    }
+
+    CBlockQueue* GetBlockQueue() {
+        return m_pBlockQueue;
     }
 
     float GetBlockSize() {
@@ -44,13 +48,14 @@ public:
 
 public:
     bool Init();
-    void StartGame(POSITION tZero, float iBlockSize, class CLayer* pLayer);
+    void SetBlockSize(float fBlockSize);
+    void StartGame(POSITION tZero, class CLayer* pLayer);
+    void CreateQueue(POSITION tPos, CLayer* pLayer);
     void CreateHold(POSITION tPos, class CLayer* pLayer);
     void CreateBlock(class CLayer* pLayer);
     void CreateMap(class CLayer* pLayer);
     bool CheckMove(int x, int y, char cBlockType, int iRot);
     void SetBlock(int x, int y, char cBlockType, int iRot);
-    void FillQueue();
-    char GetQueueBlock();
     void MakeOriginBlock(char cType);
+    void GameOver();
 };

@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="BlockData.cpp" />
     <ClCompile Include="BlockDataBase.cpp" />
+    <ClCompile Include="BlockQueue.cpp" />
     <ClCompile Include="CursorBlock.cpp" />
     <ClCompile Include="Hold.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -172,6 +173,7 @@
   <ItemGroup>
     <ClInclude Include="BlockData.h" />
     <ClInclude Include="BlockDataBase.h" />
+    <ClInclude Include="BlockQueue.h" />
     <ClInclude Include="CursorBlock.h" />
     <ClInclude Include="Flag.h" />
     <ClInclude Include="Function.h" />
