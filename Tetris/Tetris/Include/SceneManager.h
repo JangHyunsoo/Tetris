@@ -6,7 +6,7 @@ class CSceneManager
 {
 private:
 	class CScene* m_pScene;
-	class CScene* m_pNextScene;
+	class CScene* m_pNextScene; // ¿Ã∞≈ æ»æ∏
 
 public:
 	bool Init();
@@ -19,7 +19,7 @@ public:
 
 public:
 	template<typename T>
-	T* CreateScene(SCENE_CREATE sc) {
+	T* CreateScene(SCENE_CREATE sc) { // sc : next, current
 		T* pScene = new T;
 
 		if (!pScene->Init()) {

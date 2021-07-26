@@ -11,7 +11,7 @@ public:
 	CLayer();
 	~CLayer();
 private:
-	class CScene* m_pScene;
+	class CScene* m_pScene; // InGameScene
 	string m_strTag;
 	int m_iZOrder;
 	bool m_bEnable;

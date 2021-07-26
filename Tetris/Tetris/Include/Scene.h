@@ -13,7 +13,7 @@ protected:
 protected:
 	list<class CLayer*> m_LayerList;
 public:
-	class CLayer* CreateLayer(const string& strTag, int iZOrber);
+	class CLayer* CreateLayer(const string& strTag, int iZOrber); // FLOOR
 	class CLayer* FindLayer(const string& strTag);
 
 public:

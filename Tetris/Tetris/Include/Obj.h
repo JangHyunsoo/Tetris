@@ -17,7 +17,7 @@ protected:
 	virtual ~CObj();
 
 private:
-	static list<CObj*> m_ObjList;
+	static list<CObj*> m_ObjList; 
 	static unordered_map<string, CObj*> m_mapPrototype;
 
 public:
@@ -53,7 +53,7 @@ protected:
 	string m_strTag;
 	POSITION m_tPos;
 	_SIZE m_tSize;
-	POSITION m_tPivot;
+	POSITION m_tPivot; 
 	class CTexture* m_pTexture;
 
 public:
@@ -117,9 +117,9 @@ public:
 		m_tPivot = tPivot;
 	}
 
-	public:
-		void SetTexture(class CTexture* pTexture);
-		void SetTexture(const string& strKey, const wchar_t* pFileName = NULL, const string& strPathKey = TEXTURE_PATH);
+public:
+	void SetTexture(class CTexture* pTexture);
+	void SetTexture(const string& strKey, const wchar_t* pFileName = NULL, const string& strPathKey = TEXTURE_PATH);
 
 
 public:

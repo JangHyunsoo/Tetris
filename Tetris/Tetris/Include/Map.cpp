@@ -43,7 +43,7 @@ void CMap::SetBlock(int x, int y, char cBlockType, int iRot)
 	}
 }
 
-bool CMap::CheckMove(int x, int y, char cBlockType, int iRot)
+bool CMap::CheckMove(int x, int y, char cBlockType, int iRot) // vector<pair<int, int>> 
 {
 	vector<POSITION> vecpos = CBlockDataBase::GetData(cBlockType)->GetData(iRot);
 

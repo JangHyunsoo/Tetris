@@ -42,7 +42,7 @@ bool CCore::Init(HINSTANCE hInst, const wchar_t* strName, int iWidth, int iHeigh
 
 	Create();
 
-	m_hDC = GetDC(m_hWnd);
+	m_hDC = GetDC(m_hWnd); // 그림그릴때
 
 	if (!CBlockDataBase::Init())
 		return false;
@@ -103,8 +103,6 @@ int CCore::Run()
 			Logic();
 		}
 	}
-
-	// ReleaseDC(m_hWnd, m_hDc);
 
 	return (int)msg.wParam;
 }
@@ -175,13 +173,13 @@ LRESULT CCore::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 
 ATOM CCore::MyRegisterClass() {
-	WNDCLASSEX wcex;
+	WNDCLASSEX wcex; // 윈도우의 정보를 가지고 있음.
 
 	wcex.cbSize = sizeof(WNDCLASSEX);
 
 	wcex.style = CS_HREDRAW || CS_VREDRAW;
 	wcex.lpfnWndProc = CCore::WndProc;
-	wcex.cbClsExtra = 0;
+	wcex.cbClsExtra = 0; 
 	wcex.cbWndExtra = 0;
 	wcex.hInstance = m_hInst;
 	wcex.hIcon = LoadIcon(m_hInst, MAKEINTRESOURCE(IDI_ICON1));

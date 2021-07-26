@@ -54,8 +54,8 @@ public:
     void CreateHold(POSITION tPos, class CLayer* pLayer);
     void CreateBlock(class CLayer* pLayer);
     void CreateMap(class CLayer* pLayer);
+    void GameOver();
     bool CheckMove(int x, int y, char cBlockType, int iRot);
     void SetBlock(int x, int y, char cBlockType, int iRot);
     void MakeOriginBlock(char cType);
-    void GameOver();
 };

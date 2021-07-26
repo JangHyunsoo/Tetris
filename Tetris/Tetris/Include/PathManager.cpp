@@ -14,7 +14,7 @@ bool CPathManager::Init()
 {
 	wchar_t strPath[MAX_PATH] = {};
 
-	GetModuleFileName(NULL, strPath, MAX_PATH);
+	GetModuleFileName(NULL, strPath, MAX_PATH); // 현재 실행하는 파일명을 넣어줌
 
 	for (int i = lstrlen(strPath) - 1; i >= 0; --i)
 	{

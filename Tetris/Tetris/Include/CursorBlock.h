@@ -12,9 +12,9 @@ public:
     ~CCursorBlock();
 private:
 	double m_fDelay;
-	double m_fSpeed;
-	int m_iRot;
-	char m_cType;
+	double m_fSpeed; // 떨어지는 딜레이
+	int m_iRot; // 회전
+	char m_cType; // 모양
 	POSITION m_tGamePos;
 public:
 	void SetSpeed(double fSpeed) {
@@ -86,5 +86,4 @@ public:
 	virtual void Collision(float fDeltaTime);
 	virtual void Render(HDC hDC, float fDeltaTime);
 	virtual CCursorBlock* Clone();
-
 };
