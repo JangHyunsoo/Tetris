@@ -1,5 +1,6 @@
 #pragma once
 #include "MoveObj.h"
+#include "BlockDataBase.h"
 
 class CCursorBlock :
     public CMoveObj
@@ -31,6 +32,7 @@ public:
 
 	void SetType(char cType) {
 		m_cType = cType;
+		SetTexture(CBlockDataBase::GetData(cType)->GetTexture());
 	}
 
 	void SetGamePos(POSITION tPos) {

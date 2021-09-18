@@ -1,5 +1,6 @@
 #include "BlockQueue.h"
 #include "BlockDataBase.h"
+#include "ResourceManager.h"
 
 CBlockQueue::CBlockQueue()
 {
@@ -38,7 +39,6 @@ bool CBlockQueue::Init()
 {
 	m_vecType = { 'O','I','S','Z','L','J','T' };
 	FillQueue();
-	SetTexture("Yellow", L"Yellow.bmp");
 	return true;
 }
 
@@ -54,7 +54,7 @@ void CBlockQueue::Render(HDC hDC, float fDeltaTime)
 			for (int i = 0; i < arrData.size(); i++) {
 				int x = m_tPos.x + ((arrData[i].x + 2) * m_tSize.x) + 10;
 				int y = m_tPos.y + ((arrData[i].y + 2) * m_tSize.y) + 10 + t * 150;
-				BitBlt(hDC, x, y, m_tSize.x, m_tSize.y, m_pTexture->GetDC(), 0, 0, SRCCOPY);
+				BitBlt(hDC, x, y, m_tSize.x, m_tSize.y, CResourceManager::GetInst()->FindTexture(CBlockDataBase::GetData(m_vecBlockType[m_vecBlockType.size() - t - 1])->GetTexture())->GetDC(), 0, 0, SRCCOPY);
 			}
 		}
 	}

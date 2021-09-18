@@ -10,15 +10,9 @@ CBlockData::CBlockData(char cType) :
 {
 }
 
-CBlockData::CBlockData(char cType, vector<POSITION> arrData, int iSize) :
+CBlockData::CBlockData(char cType, string strTexture, int iSize, vector<POSITION> arrData) :
 	m_cType(cType),
-	m_arrData(arrData),
-	m_iSize(iSize)
-{
-}
-
-CBlockData::CBlockData(char cType, int iSize, vector<POSITION> arrData) :
-	m_cType(cType),
+	m_strTexture(strTexture),
 	m_arrData(arrData),
 	m_iSize(iSize)
 {

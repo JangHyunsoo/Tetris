@@ -26,6 +26,7 @@ void CCursorBlock::MakeOrigin(char cType)
 	m_fDelay = 0;
 	m_iRot = 0;
 	m_cType = cType;
+	SetTexture(CBlockDataBase::GetData(cType)->GetTexture());
 	m_tGamePos = POSITION(5, 1);
 	SetPos(GET_SINGE(CRuleManager)->ToWorldPos(m_tGamePos));
 }
@@ -35,6 +36,9 @@ bool CCursorBlock::Init()
 	SetSpeed(1.0f);
 	SetDelay(0.0f);
 	SetRotation(0);
+	SetTexture("Black", L"Black.bmp");
+	SetTexture("Gray", L"Gray.bmp");
+	SetTexture("Red", L"Red.bmp");
 	SetTexture("Yellow", L"Yellow.bmp");
 
 	return true;

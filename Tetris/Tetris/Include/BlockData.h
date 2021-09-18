@@ -6,14 +6,18 @@ class CBlockData
 public:
 	CBlockData();
 	CBlockData(char cType);
-	CBlockData(char cType, vector<POSITION> arrData, int iSize);
-	CBlockData(char cType, int iSize, vector<POSITION> arrData);
+	CBlockData(char cType, string strTexture ,int iSize, vector<POSITION> arrData);
 	~CBlockData();
 private:
 	char m_cType;
+	string m_strTexture;
 	int m_iSize;
 	vector<POSITION> m_arrData;
 public:
+	const string& GetTexture() {
+		return m_strTexture;
+	}
+
 	vector<POSITION> GetData(int rot) {
 		vector<POSITION> arrResult;
 		
